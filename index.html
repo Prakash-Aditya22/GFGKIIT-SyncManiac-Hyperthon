@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Profile Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #13111C;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .level-section {
+            background-color: #1D1B26;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .level-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .level-icon {
+            color: #FF69B4;
+        }
+
+        .profile-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .daily-energy {
+            background-color: #1D1B26;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .energy-title {
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .energy-bar {
+            margin: 15px 0;
+        }
+
+        .energy-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: #2D2B36;
+            border-radius: 2px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 2px;
+        }
+
+        .willpower .progress-fill {
+            background-color: #9B6DFF;
+            width: 77%;
+        }
+
+        .health .progress-fill {
+            background-color: #4CAF50;
+            width: 90%;
+        }
+
+        .mood .progress-fill {
+            background-color: #FF4B4B;
+            width: 80%;
+        }
+
+        .center-panel {
+            background-color: #1D1B26;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .spider-chart {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .arc-section {
+            background-color: #1D1B26;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .arc-title {
+            color: #9B6DFF;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .arc-list {
+            list-style: none;
+            color: #8A8A8A;
+            font-size: 14px;
+        }
+
+        .arc-list li {
+            margin: 8px 0;
+        }
+
+        .right-panel {
+            background-color: #1D1B26;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .xp-section {
+            margin-bottom: 20px;
+        }
+
+        .xp-current {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #FFD700;
+            margin-bottom: 5px;
+            font-size: 28px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .xp-goal {
+            font-size: 12px;
+            color: #8A8A8A;
+        }
+
+        .tasks-section h3 {
+            margin: 15px 0;
+            font-size: 25px;
+            color: #9B6DFF;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #8A8A8A;
+        }
+
+        .task span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: #2D2B36;
+        }
+
+        .tag.creativity {
+            color: #FF69B4;
+        }
+
+        .tag.writing {
+            color: #4CAF50;
+        }
+
+        .tag.hobbies {
+            color: #FFD700;
+        }
+
+        .xp-goal {
+            opacity: 0.7;
+        }
+
+        .xp-goal:hover {
+            opacity: 1;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: ease-out;
+        }
+
+        .managerbtn {
+            background-color: #9c6eff;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid black;
+            color: white;
+        }
+
+        .managerbtn:hover {
+            border-radius: 15px;
+            border: 1px solid grey;
+            box-shadow: #bca1f6 0 0 19px;
+        }
+
+        .checkbox-wrapper-12 {
+  position: relative;
+}
+
+
+.right-panel {
+    width: 350px;
+}
+    </style>
+</head>
+<body>
+    
+    <div class="dashboard">
+        <div class="left-panel">
+            <div class="level-section">
+                <div class="level-text">
+                    <span class="level-icon">↑</span>
+                    <span>LEVEL: 14</span>
+                </div>
+            </div>
+            <img src="Create a high resolution artwork of Anime Girl is op.jpg" alt="Profile" class="profile-image">
+            <div class="daily-energy">
+                <div class="energy-title">
+                    <span>❤️</span>
+                    <span>Daily Energy</span>
+                </div>
+                <div class="energy-bar willpower">
+                    <div class="energy-label">
+                        <span>💜 Willpower</span>
+                        <span>7/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="energy-bar health">
+                    <div class="energy-label">
+                        <span>💚 Health</span>
+                        <span>9/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="energy-bar mood">
+                    <div class="energy-label">
+                        <span>❤️ Mood</span>
+                        <span>8/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-panel">
+            <canvas id="spiderChart" class="spider-chart"></canvas>
+            <div class="arc-section">
+                <div class="arc-title">
+                    <span>💰</span>
+                    <span>Greedy Ruthlessness Arc</span>
+                </div>
+                <ul class="arc-list">
+                    <li>- Prioritize your needs!</li>
+                    <li>- Ruthlessly take action!</li>
+                    <li>- Ask and demand for opportunities</li>
+                    <li>- Believe in your competency and your value</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="xp-section">
+                <div class="xp-current">
+                    <span>⭐</span>
+                    <span>Current XP: 314</span>
+                </div>
+                <div class="xp-goal">To reach Level 15 attain 100 XP</div>
+            </div>
+            <div class="tasks-section">
+                <h3>Hero's Tasks</h3>
+                <div class="task">
+                    <input type="checkbox">
+                    <span>Youtube Script <span class="tag creativity">+ Creativity</span> 
+                    <span class="tag writing">+ Writing</span></span>
+                </div>
+                <div>
+                    <div class="checkbox-wrapper">
+                    <input id="_checkbox-26" type="checkbox">
+                    <label for="_checkbox-26">
+                    <div class="tick_mark"></div>
+                    <div class="checkbox-wrapper-12"> 
+                        <div class="cbx">
+                </div>    
+  </div>
+  
+  
+</div>
+                    </label>
+                </div>
+
+                </div>
+                <div class="task">
+                    <!-- <input type="checkbox"> -->
+                     <div class="checkbox-wrapper-12">
+  <div class="cbx">
+    <!-- <input checked="" type="checkbox" id="cbx-12">
+    <label for="cbx-12">
+    </label> -->
+    <svg fill="none" viewBox="0 0 15 14" height="14" width="15">
+      <path d="M2 8.36364L6.23077 12L13 2"></path>
+    </svg>
+  </div>
+  
+  
+</div>
+                </div>
+                <div class="task">
+                    <input type="checkbox">
+                    <span>Read ORV <span class="tag hobbies">+ Hobbies</span></span>
+
+                    <span  class="tag writing">+ 2 Writing</span></span>
+                </div>
+
+                <div class="btn mt-5">
+                    <button class="managerbtn">Manager</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        const ctx = document.getElementById('spiderChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Time', '', 'Physical', '', 'Psyche', '', 'Core', '', 'Spiritual'],
+                datasets: [{
+                    data: [90, 85, 64, 75, 87, 80, 71, 65, 54],
+                    backgroundColor: 'rgba(155, 109, 255, 0.2)',
+                    borderColor: '#9B6DFF',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#9B6DFF',
+                    pointBorderColor: '#9B6DFF',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#9B6DFF'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        pointLabels: {
+                            color: '#8A8A8A',
+                            font: {
+                                size: 12
+                            }
+                        },
+                        ticks: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
